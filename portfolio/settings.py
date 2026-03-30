@@ -27,9 +27,13 @@ env.read_env( BASE_DIR / '.env')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['https://waleed-merabet-portfolio1.onrender.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'localhost',
+    'waleed-merabet-portfolio1.onrender.com'
+]
 CSRF_TRUSTED_ORIGINS = ['https://waleed-merabet-portfolio1.onrender.com']
 
 
