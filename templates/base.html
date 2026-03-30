@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Portfolio | waleed merabet</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="{% static 'images/waleed.jpg'%}">
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/style.css" %}'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "css/nav_style.css" %}'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <script defer src='{% static "js/script.js" %}'></script>
+
+
+</head>
+<body>
+    {% include 'parts/navbar.html' %}
+    {% block content%}
+    {% endblock%}
+
+    <div class="dark__mode__btn" id="light">
+        <button type="button">
+        <i class="ri-moon-line moon__icon"></i>
+        </button>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+            {% if 'success' in message.tags %}
+                <span>
+                    <i class="ri-mail-check-line"></i>
+                </span>
+            {% else %}
+                <span>
+                    <i class="ri-mail-close-line"></i>
+                </span>
+            {% endif %}
+            <span>{{ message }}</span>
+        </div>
+        {% endfor%}
+    {% endif  %}
+
+    {% include 'parts/footer.html'%}
+
+
+    <script>
+        const sadIcon = "{% static 'images/comback.png' %}"
+    </script>
+</body>
+</html>

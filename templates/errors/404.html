@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+<section class="error__page">
+    <div class="404__err">
+        <img src="{% static 'images/error__404.png'%}" alt="err">
+    </div>
+    <a href="{% url 'index' %}" class="download__btn">
+        <button>
+            Home
+        </button>
+    </a>
+</section>
+{% endblock content%}

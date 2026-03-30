@@ -1,0 +1,250 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="about">
+  <div class="container">
+    <div class="pulse pulse1"></div>
+    <div class="pulse pulse2"></div>
+    <div class="pulse pulse3"></div>
+    <div class="pulse pulse4"></div>
+    <div class="pulse pulse5"></div>
+    <div class="image">
+      {% if profile_img.profile_image %}
+      <img src="{{ profile_img.profile_image.url }}" alt="err" />
+      {% else %}
+      <img src="{% static 'images/waleed.jpg' %}" alt="err" />
+      {% endif %}
+      <span class="coding_icons c_icon_1">
+        <i class="ri-macbook-line"></i>
+      </span>
+      <span class="coding_icons c_icon_2">
+        <i class="ri-settings-4-line"></i>
+      </span>
+      <span class="coding_icons c_icon_3">
+        <i class="ri-puzzle-line"></i>
+      </span>
+      <span class="coding_icons c_icon_4">
+        <i class="ri-git-branch-line"></i>
+      </span>
+      <span class="coding_icons c_icon_5">
+        <i class="ri-bug-line"></i>
+      </span>
+      <span class="coding_icons c_icon_6">
+        <i class="ri-code-s-slash-line"></i>
+      </span>
+    </div>
+    <div class="content">
+      <h1 class="hello">
+        Hello Every one I'm<br />
+        <span class="my__name">Waleed Merabet</span>
+      </h1>
+      <p class="about__text" id="about__p">
+        Hi! I'm Waleed Merabet, a passionate <span class="job">Fullstack developer. </span>I specialize
+        in building responsive websites and web applications using HTML, CSS,
+        JavaScript, and Python. I love turning ideas into real, functional
+        projects and continuously learning new technologies to improve my
+        skills. Let's create something amazing together!
+      </p>
+      <div class="btns">
+        <a href="{% static 'cv.pdf' %}" download >
+          <button class="download__btn">
+            <span>DOWNLOAD CV</span>
+            <i class="ri-download-cloud-2-line"></i>
+          </button>
+        </a>
+        <div  id="send__msg">
+          <button class="download__btn send__msg">
+            <span>SEND MESSAGE</span>
+            <i class="ri-mail-send-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills">
+  <h1 class="title">
+    <div>
+      <span >Skills</span>
+      <i class="ri-tools-line "></i>
+    </div>
+  </h1>
+  <div class="my__skills">
+    <div class="card card1">
+      <div class="skill__icon">
+        <i class="ri-html5-line"></i>
+      </div>
+      <p>HTML 5</p>
+    </div>
+    <div class="card card2">
+      <div class="skill__icon">
+        <i class="ri-css3-line"></i>
+      </div>
+      <p>CSS 3</p>
+    </div>
+    <div class="card card4">
+      <div class="skill__icon">
+        <i class="ri-reactjs-line"></i>
+      </div>
+      <p>React js</p>
+    </div>
+    <div class="card card3">
+      <div class="skill__icon">
+        <i class="ri-javascript-line"></i>
+      </div>
+      <p>JavaScript</p>
+    </div>
+    <div class="card card5">
+      <div class="skill__icon">
+        <img src="{% static 'images/python.png'%}" alt="err">
+      </div>
+      <p>Python</p>
+    </div>
+    <div class="card card6">
+      <div class="skill__icon">
+        <img src="{% static 'images/django.png'%}" alt="err">
+      </div>
+      <p>Django</p>
+    </div>
+    <div class="card card7">
+      <div class="skill__icon">
+        <img src="{% static 'images/flask-logo-icon.png'%}" alt="err">
+      </div>
+      <p>Flask</p>
+    </div>
+    <div class="card card8">
+      <div class="skill__icon">
+        <img src="{% static 'images/sql-server.png'%}" alt="err">
+      </div>
+      <p>SQL</p>
+    </div>
+    <div class="card card10">
+      <div class="skill__icon">
+        <i class="ri-tailwind-css-fill"></i>
+      </div>
+      <p>Tailwind</p>
+    </div>
+    <div class="card card9">
+      <div class="skill__icon">
+        <i class="ri-bootstrap-line"></i>
+      </div>
+      <p>Bootstarp</p>
+    </div>
+    <div class="card card11">
+      <div class="skill__icon">
+        <i class="ri-git-branch-line"></i>
+      </div>
+      <p>GIT</p>
+    </div>
+    <div class="card card12">
+      <div class="skill__icon">
+        <i class="ri-github-fill"></i>
+      </div>
+      <p>Github</p>
+    </div>
+    
+  </div>
+</section>
+
+<section class="projects">
+  <h1 class="title">
+    <div>
+      <span>Projects</span>
+      <i class="ri-folder-5-line"></i>
+    </div>
+  </h1>
+  <div class="projects__cards">
+    {% for project in projects%}
+    <div class="projects__card">
+      <div class="project__img">
+        {% if project.image %}
+        <img src="{{ project.image.url }}" alt="err">
+        {% else %}
+        <img src="{% static 'images/default_project.jpg' %}" alt="err">
+        {% endif %}
+      </div>
+      <h2 class="card__tit">
+        {{ project.title }}
+      </h2>
+      <p>
+        {{ project.description }}
+      </p>
+      <div class="technologies">
+        {% for tech in project.tech_list %}
+        <span> {{ tech }}</span>
+        {% endfor %}
+      </div>
+      <a href="{{ project.project_link}}">
+        <button class="discover__btn">Discover</button>
+      </a> 
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="socials">
+  <h1 class="title">
+    <div>
+      <span >Accounts</span>
+      <i class="ri-user-add-line"></i>
+    </div>
+  </h1>
+  <div class="socials__cards">
+    <a href="https://www.instagram.com/waleed.mrt" class="social__card social1">
+      <div>
+        <i class="ri-instagram-line"></i>
+      </div>
+      <h3>Instagram</h3>
+      <p>waleed.mrt</p>
+    </a>
+    <a href="https://www.facebook.com/walid.merabet.1884" class="social__card social2">
+      <div>
+        <i class="ri-facebook-line"></i>
+      </div>
+      <h3>Facebook</h3>
+      <p>waleed Merabet</p>
+    </a>
+    <a href="https://wa.me/213558184717?text=Hello" class="social__card social3">
+      <div>
+        <i class="ri-whatsapp-line"></i>
+      </div>
+      <h3>Whatsapp</h3>
+      <p>+213 558 18 47 17</p>
+    </a>
+    <a href="https://github.com/waleedMRT" class="social__card social4">
+      <div>
+        <i class="ri-github-line"></i>
+      </div>
+      <h3>Github</h3>
+      <p>waleedMRT</p>
+    </a>
+  </div>
+
+</section>
+
+<section class="contact">
+  <h1 class="title">
+    <div>
+      <span >Contact</span>
+      <i class="ri-phone-line"></i>
+    </div>
+  </h1>
+  <form class="message" method="POST">
+    {% csrf_token %}
+    <div>
+      <label class="label">Name :</label>
+      <input type="text" placeholder="Enter your name..." class="input" name="name">
+    </div>
+    <div>
+      <label class="label">Email :</label>
+      <input type="email" placeholder="example@gmail.com" class="input" name="email">
+    </div>
+    <div>
+      <label class="label">Message :</label>
+      <textarea placeholder="Type your message" class="input textarea" name="msg"></textarea>
+    </div>
+    <button class="send__btn" type="submit">Send</button>
+  </form>
+</section>
+
+
+{% endblock content %}

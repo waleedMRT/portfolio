@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+<section class="error__page">
+    <h3>You are not allowed (403) </h3>
+    <div class="404__err">
+        <img src="{% static 'images/error__403.png'%}" alt="err">
+    </div>
+    <a href="{% url 'index' %}" class="download__btn">
+        <button>
+            Home
+        </button>
+    </a>
+</section>
+{% endblock content%}

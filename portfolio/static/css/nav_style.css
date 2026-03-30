@@ -1,0 +1,86 @@
+
+.navbar{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    width: 100vw;
+    max-width: 1200px;
+    margin-inline: auto;
+    height: 100px;
+    border-radius: 1rem 1rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 5px 0 10px  rgba(231, 231, 231, 0.3);
+    z-index: 9999;
+}
+.navbar ul{
+    position: relative;
+    display: flex;
+}
+.navbar ul li {
+    position: relative;
+}
+.navbar ul li a{
+    position: relative;
+    width: 75px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar ul li a i{
+    position: absolute;
+    font-size: 2rem;
+    color: #fe1870;
+}
+.activeIcone{
+    opacity: 0;
+    pointer-events: none;
+    transition: all ease .6s ;
+    transition-delay: .2s;
+}
+.navbar ul li.active .activeIcone{
+    opacity: 1;
+    pointer-events: auto;
+}
+.indicator{
+    position: absolute;
+    left: 25px;
+    bottom: -8px;
+    height: 36px;
+    width: 25px;
+    background-color: #fe1870;
+    border-radius: 50%;
+    transition: all .5s cubic-bezier(0.68 , -0.55 , 0.265 , 1.55);
+}
+.indicator::before{
+    position: absolute;
+    content: "";
+    left: -15px;
+    bottom: 50%;
+    background-color: #ffffff;
+    height: 22px;
+    width: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 10px 0 #fe1870;
+}
+.indicator::after{
+    position: absolute;
+    content: "";
+    right: -15px;
+    bottom: 50%;
+    background-color: #ffffff;
+    height: 22px;
+    width: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 10px 0 #fe1870;
+}
+
+@media(width > 1024px){
+    .navbar{
+        display: none;
+    }
+}
