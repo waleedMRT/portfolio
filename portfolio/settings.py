@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import environ
 import dj_database_url
+import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
@@ -48,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'front_page.apps.FrontPageConfig'
+    'front_page.apps.FrontPageConfig',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -146,3 +149,14 @@ EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 # === email ===
+
+
+# add images with cloudinary
+cloudinary.config(
+    cloud_name = env('CLOUDINARY_CLOUD_NAME'),
+    api_key = env('CLOUDINARY_API_KEY'),
+    api_secret = env('CLOUDINARY_API_SECRET'),
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# === add images with cloudinary ===
