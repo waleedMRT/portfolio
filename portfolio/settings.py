@@ -135,10 +135,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'portfolio' / 'static'
 ]
 
-# media 
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
-# === media ===
+# # media 
+# MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/media/'
+# # === media ===
 
 
 # email
