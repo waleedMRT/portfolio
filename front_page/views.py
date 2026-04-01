@@ -18,18 +18,19 @@ def index_view(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             msg = form.cleaned_data['msg']
-
-            send_mail(
-                subject=f'Message from {name}',
-                message=f'From: {email}\n\nMessage:\n{msg}',
-                from_email='merabetwalid@gmail.com',
-                recipient_list=['merabetwalid15@gmail.com']
-            )
-
-            messages.success(request, 'sent')
-            return redirect('index')
-        else:
-            messages.error(request, 'Try again.')
+            try:
+                send_mail(
+                    subject=f'Message from {name}',
+                    message=f'From: {email}\n\nMessage:\n{msg}',
+                    from_email=None,
+                    recipient_list=['merabetwalid15@gmail.com'],
+                    fail_silently=False
+                )
+                messages.success(request, 'sent')
+                return redirect('index')
+            except Exception as e:
+                messages.error(request, 'Try again.')
+                print('Email error :' , e)
 
     context = {
         'profile_img': profile_img,
