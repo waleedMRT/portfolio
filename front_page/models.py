@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class ProfileImage(models.Model):
     profile_image = models.ImageField(upload_to='photos/%y/%m/%d' , blank=True , null=True)
@@ -7,7 +8,7 @@ class ProfileImage(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='pphotos/%y/%m/%d', blank=True, null=True)
+    image = CloudinaryField('image' , blank=True , null=True)
     technologies = models.CharField(max_length=250 , help_text="فصل كل تقنية بفاصلة")
     project_link = models.URLField(blank=True, null=True)
 
