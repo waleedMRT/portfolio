@@ -2,7 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 
 class ProfileImage(models.Model):
-    profile_image = models.ImageField(upload_to='photos/%y/%m/%d' , blank=True , null=True)
+    profile_image = CloudinaryField('image' , null=True , blank=True)
 
 
 class Project(models.Model):
