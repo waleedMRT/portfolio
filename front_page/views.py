@@ -5,21 +5,45 @@ from django.core.mail import send_mail
 from django.contrib import messages
 import threading
 from django.conf import settings
+import os
+import requests
 
 from django.shortcuts import render, redirect
 
 
-def send_mail_async(subject , message):
+def send_mail_async(name, email , msg):
     try:
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=['merabetwalid15@gmail.com'],
-            fail_silently=False
+        print("🚀 Sending via API...")
+
+        response = requests.post(
+            "https://api.sendgrid.com/v3/mail/send",
+            headers={
+                "Authorization": f"Bearer {settings.EMAIL_HOST_PASSWORD}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "personalizations": [
+                    {
+                        "to": [{"email": "merabetwalid15@gmail.com"}]
+                    }
+                ],
+                "from": {
+                    "email": "merabetwalid15@gmail.com"
+                },
+                "subject": f"Message from {name}",
+                "content": [
+                    {
+                        "type": "text/plain",
+                        "value": f"Sender: {email}\n\nMessage:\n{msg}"
+                    }
+                ]
+            }
         )
+
+        print("Status:", response.status_code)
+
     except Exception as e:
-        print('Erro email : ' , e)
+        print("❌ Error:", e)
 
 
 def index_view(request):
@@ -38,8 +62,7 @@ def index_view(request):
             thread = threading.Thread(
                 target=send_mail_async,
                 args=(
-                    f'Message from {name}',
-                    f'From {email}\n\nMessage:\n{msg}'
+                    name , email , msg
                 )
             )
             thread.start()
