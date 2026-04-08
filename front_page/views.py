@@ -3,14 +3,23 @@ from .models import ProfileImage , Project
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.contrib import messages
+import threading
 from django.conf import settings
-
 
 from django.shortcuts import render, redirect
 
 
-
-    
+def send_mail_async(subject , message):
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=['merabetwalid15@gmail.com'],
+            fail_silently=False
+        )
+    except Exception as e:
+        print('Erro email : ' , e)
 
 
 def index_view(request):
@@ -25,21 +34,17 @@ def index_view(request):
             email = form.cleaned_data['email']
             msg = form.cleaned_data['msg']
             
-            try:
-                send_mail(
-                subject=f"Message from {name}",
-                message=f"Sender:{email}\n\nMessage:\n{msg}",
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['merabetwalid15@gmail.com'],
-                fail_silently=False
+
+            thread = threading.Thread(
+                target=send_mail_async,
+                args=(
+                    f'Message from {name}',
+                    f'From {email}\n\nMessage:\n{msg}'
                 )
-                messages.success(request , 'sent')
-                return redirect('index')
-            except Exception as e:
-                messages.error(request , 'Try again.')
-                print('Erro email : ' , e)
-            
-            
+            )
+            thread.start()
+            messages.success(request , 'sent')
+            return redirect('index')
 
     context = {
         'profile_img': profile_img,
