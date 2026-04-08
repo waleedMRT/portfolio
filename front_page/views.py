@@ -68,7 +68,8 @@ def index_view(request):
             thread.start()
             messages.success(request , 'sent')
             return redirect('index')
-
+        else:
+            messages.error(request , 'Try again.')
     context = {
         'profile_img': profile_img,
         'projects': projects,
